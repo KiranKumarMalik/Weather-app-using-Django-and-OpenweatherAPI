@@ -1,0 +1,54 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <title>Document</title>
+</head>
+<body>
+    <!-- <div id="preloader">
+        <div class="loader"></div>
+    </div> -->
+
+
+    <div class="app-container">
+        <div class="search-box">
+            <input type="text" name="city" id="city-input" placeholder="Enter City Name" spellcheck="false">
+            <button id="search"><img src="{% static 'images/search.png' %}" alt=""></button>
+        </div>
+        <div class="error">
+            <p>Invalid City Name</p>
+        </div>
+
+        <div class="weather">
+            <img src="{% static 'images/clear.png' %}" alt="" class="weather-icon">
+            <p id="condition">{{weather}}</p>
+
+            <h1 id="temp"></h1>
+            <h2 id="city">{{city}}</h2>
+
+            <div class="details">
+                <div class="col">
+                    <img src="{% static 'images/humidity.png' %}" alt="">
+
+                    <div>
+                        <p class="humidity"></p>
+                        <p>Humidity</p>
+                    </div>
+                </div>
+                <div class="col">
+                    <img src="{% static 'images/wind.png' %}" alt="">
+
+                    <div>
+                        <p class="wind"></p>
+                        <p>Wind Speed</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</body>
+</html>
