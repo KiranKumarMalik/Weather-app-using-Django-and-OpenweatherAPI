@@ -12,8 +12,10 @@
         <div class="loader"></div>
     </div> -->
 
-
+    
     <div class="app-container">
+        <form method="POST">
+            {% csrf_token %}
         <div class="search-box">
             <input type="text" name="city" id="city-input" placeholder="Enter City Name" spellcheck="false">
             <button id="search"><img src="{% static 'images/search.png' %}" alt=""></button>
@@ -21,12 +23,12 @@
         <div class="error">
             <p>Invalid City Name</p>
         </div>
-
+        </form>
         <div class="weather">
-            <img src="{% static 'images/clear.png' %}" alt="" class="weather-icon">
+            <img src="{% static 'images/' %}{{ icon }}" alt="Weather Icon" width="100px">
             <p id="condition">{{weather}}</p>
 
-            <h1 id="temp"></h1>
+            <h1 id="temp">{{temp}}</h1>
             <h2 id="city">{{city}}</h2>
 
             <div class="details">
@@ -34,7 +36,7 @@
                     <img src="{% static 'images/humidity.png' %}" alt="">
 
                     <div>
-                        <p class="humidity"></p>
+                        <p class="humidity">{{humidity}}</p>
                         <p>Humidity</p>
                     </div>
                 </div>
@@ -42,7 +44,7 @@
                     <img src="{% static 'images/wind.png' %}" alt="">
 
                     <div>
-                        <p class="wind"></p>
+                        <p class="wind">{{wind}}</p>
                         <p>Wind Speed</p>
                     </div>
                 </div>
