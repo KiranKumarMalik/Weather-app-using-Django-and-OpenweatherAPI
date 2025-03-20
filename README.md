@@ -7,6 +7,7 @@ Weather Application is a Django web application designed for to know the tempera
 - Framework: Django
 - Frontend: HTML, Bootstrap
 - API: OpenweatherAPI
+    Link: https://openweathermap.org/current
 
 ### ⚙️ Features
 

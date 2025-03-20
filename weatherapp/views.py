@@ -5,7 +5,7 @@ from django.views.decorators.csrf import csrf_exempt
 # Create your views here.
 
 def home(request):
-    city = request.POST.get('city', 'Indore')  # Default city
+    city = request.POST.get('city', 'Bhadrak')  # Default city
     API_KEY = "aaf83a88258c197ad786f6ebb0f9c1fd"
     url = f"https://api.openweathermap.org/data/2.5/weather?q={city}&appid={API_KEY}"
     PARAMS = {'units': 'metric'}
@@ -21,6 +21,22 @@ def home(request):
     humidity = response['main']['humidity']
     wind = response['wind']['speed']
     description = response['weather'][0]['description']
+    longitude = response['coord']['lon']
+    latitude = response['coord']['lat']
+
+
+    image_url = f"https://api.unsplash.com/search/photos?query={city}&client_id={"NaPXDorEzVqRq2qqO7k-uHGXVXw0Dk2C7WreeaBg4M0"}&per_page=1"
+
+    try:
+        image_response = requests.get(image_url).json()
+        if image_response['results']:  # Check if there are results
+            city_image = image_response['results'][0]['urls']['regular']
+        else:
+            city_image = None
+    except Exception as e:
+        print(f"Error fetching image: {e}")
+        city_image = None
+
 
     # Mapping OpenWeatherMap conditions to local static icons
     icon_map = {
@@ -48,7 +64,10 @@ def home(request):
         'city': city.capitalize(),
         'weather': weather_condition.title(),
         'humidity': f"{humidity}%",
-        'wind': f"{wind} m/s"
+        'wind': f"{wind} m/s",
+        'longitude': longitude,
+        'latitude': latitude,
+        'city_image': city_image,
     }
 
     return render(request, 'weatherapp/home.html', context)
