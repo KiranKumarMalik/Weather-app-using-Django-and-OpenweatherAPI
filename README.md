@@ -34,7 +34,7 @@ Weather is a Django web application designed for to know the temperature, humidi
 
 # 1. Application
 
-![home](https://github.com/KiranKumarMalik/Carzone-web-application-using-Django/blob/b459df58858ed6710544862a4592c7b46161d362/ss/home.png)
+![home](https://github.com/KiranKumarMalik/Weather-app-using-Django-and-OpenweatherAPI/blob/26e1d1eef7afe81a30ff1b243abb39d124cc9a2c/ss/app.png)
 
 
 
