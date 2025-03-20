@@ -1,6 +1,6 @@
 ## 🌡️ Weather application using Django framework and OpenweatherAPI
 
-Weather is a Django web application designed for to know the temperature, humidity and wind speed of particular city
+Weather Application is a Django web application designed for to know the temperature, humidity and wind speed of particular city
 
 ### ⚙️ Technical Stack
 
@@ -19,11 +19,9 @@ Weather is a Django web application designed for to know the temperature, humidi
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/KiranKumarMalik/Carzone-web-application-using-Django.git
-   cd carzone_project
+   git clone https://github.com/KiranKumarMalik/Weather-app-using-Django-and-OpenweatherAPI.git
+   cd weather
 
-
-![app](https://github.com/KiranKumarMalik/Carzone-web-application-using-Django/blob/b459df58858ed6710544862a4592c7b46161d362/ss/home.png)
 
 # Technologies Used
 • Python
