@@ -25,7 +25,7 @@ def home(request):
     # Mapping OpenWeatherMap conditions to local static icons
     icon_map = {
         "clear": "clear.png",
-        "clouds": "cloudy.png",
+        "clouds": "clouds.png",
         "rain": "rain.png",
         "drizzle": "drizzle.png",
         "thunderstorm": "thunderstorm.png",

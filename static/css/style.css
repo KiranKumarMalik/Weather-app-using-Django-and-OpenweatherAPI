@@ -25,7 +25,7 @@ html, body{
     position: absolute;
     width: 90%;
     max-width: 470px;
-    /* background-image: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url("images/weather.jpg"); */
+    background-image:linear-gradient(rgba(10, 233, 178, 0.6),rgba(10, 229, 196, 0.6), rgba(5, 145, 164, 0.6)), url("images/weather.jpg");
     background-size: cover;
     background-position: center;
     border-radius: 20px;
