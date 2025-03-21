@@ -24,7 +24,6 @@ def home(request):
     longitude = response['coord']['lon']
     latitude = response['coord']['lat']
 
-
     image_url = f"https://api.unsplash.com/search/photos?query={city}&client_id={"NaPXDorEzVqRq2qqO7k-uHGXVXw0Dk2C7WreeaBg4M0"}&per_page=1"
 
     try:

@@ -1,4 +1,4 @@
-## 🌡️ Weather application using Django framework and OpenweatherAPI
+## 🌡️ Weather application using Django framework, Openweathermap API and unsplash API
 
 Weather Application is a Django web application designed for to know the temperature, humidity and wind speed of particular city
 
@@ -6,8 +6,10 @@ Weather Application is a Django web application designed for to know the tempera
 
 - Framework: Django
 - Frontend: HTML, Bootstrap
-- API: OpenweatherAPI
+- API: OpenweathermapAPI
     Link: https://openweathermap.org/current
+- Image API: Unsplash
+    Link: image_url = f"https://api.unsplash.com/search/photos?query={city}&client_id={"UNSPLASH API ACCESS KEY"}&per_page=1"
 
 ### ⚙️ Features
 
@@ -15,6 +17,9 @@ Weather Application is a Django web application designed for to know the tempera
 - Weather Condition
 - humidity
 - wind speed
+- City Image
+- Longitude
+- Latitude
 
 ### 👩‍💻 Local Setup
 
@@ -33,7 +38,7 @@ Weather Application is a Django web application designed for to know the tempera
 
 # 1. Application
 
-![home](https://github.com/KiranKumarMalik/Weather-app-using-Django-and-OpenweatherAPI/blob/26e1d1eef7afe81a30ff1b243abb39d124cc9a2c/ss/app.png)
+![app](https://github.com/KiranKumarMalik/Weather-app-using-Django-and-OpenweatherAPI/blob/c89ba972b754cb0520191dcc24fdb3e1c4404d38/ss/app1.png)
 
 
 
