@@ -1,41 +1,49 @@
-from django.shortcuts import render, HttpResponse
+from django.shortcuts import render
 import requests
 import datetime
-from django.views.decorators.csrf import csrf_exempt
-# Create your views here.
 
 def home(request):
     city = request.POST.get('city', 'Bhadrak')  # Default city
-    API_KEY = "aaf83a88258c197ad786f6ebb0f9c1fd"
-    url = f"https://api.openweathermap.org/data/2.5/weather?q={city}&appid={API_KEY}"
-    PARAMS = {'units': 'metric'}
+    WEATHER_API_KEY = "aaf83a88258c197ad786f6ebb0f9c1fd"
+    UNSPLASH_API_KEY = "NaPXDorEzVqRq2qqO7k-uHGXVXw0Dk2C7WreeaBg4M0"
 
-    response = requests.get(url, params=PARAMS).json()
+    # Step 1: Fetch City Details (Including State) Using Geocoding API
+    geo_url = f"https://api.openweathermap.org/geo/1.0/direct?q={city}&limit=1&appid={WEATHER_API_KEY}"
 
-    if response.get("cod") != 200:  # Invalid city handling
+    geo_response = requests.get(geo_url).json()
+    if not geo_response:
         return render(request, 'weatherapp/home.html', {"error": "Invalid City Name"})
 
-    # Extract weather details
-    weather_condition = response['weather'][0]['main'].lower()
-    temp = response['main']['temp']
-    humidity = response['main']['humidity']
-    wind = response['wind']['speed']
-    description = response['weather'][0]['description']
-    longitude = response['coord']['lon']
-    latitude = response['coord']['lat']
+    city_name = geo_response[0]['name']
+    state = geo_response[0].get('state', '')  # Some locations may not have a state
+    country = geo_response[0]['country']
 
-    image_url = f"https://api.unsplash.com/search/photos?query={city}&client_id={"NaPXDorEzVqRq2qqO7k-uHGXVXw0Dk2C7WreeaBg4M0"}&per_page=1"
+    # Step 2: Fetch Weather Data
+    weather_url = f"https://api.openweathermap.org/data/2.5/weather?q={city}&appid={WEATHER_API_KEY}&units=metric"
+
+    weather_response = requests.get(weather_url).json()
+
+    if weather_response.get("cod") != 200:
+        return render(request, 'weatherapp/home.html', {"error": "Weather data not found"})
+
+    # Extract weather details
+    weather_condition = weather_response['weather'][0]['main'].lower()
+    temp = weather_response['main']['temp']
+    humidity = weather_response['main']['humidity']
+    wind = weather_response['wind']['speed']
+    description = weather_response['weather'][0]['description']
+    longitude = weather_response['coord']['lon']
+    latitude = weather_response['coord']['lat']
+
+    # Step 3: Fetch City Image from Unsplash
+    image_url = f"https://api.unsplash.com/search/photos?query={city}&client_id={UNSPLASH_API_KEY}&per_page=1"
 
     try:
         image_response = requests.get(image_url).json()
-        if image_response['results']:  # Check if there are results
-            city_image = image_response['results'][0]['urls']['regular']
-        else:
-            city_image = None
+        city_image = image_response['results'][0]['urls']['regular'] if image_response['results'] else None
     except Exception as e:
         print(f"Error fetching image: {e}")
         city_image = None
-
 
     # Mapping OpenWeatherMap conditions to local static icons
     icon_map = {
@@ -43,6 +51,7 @@ def home(request):
         "clouds": "clouds.png",
         "rain": "rain.png",
         "drizzle": "drizzle.png",
+        "smoke": "smoke.png",
         "thunderstorm": "thunderstorm.png",
         "snow": "snow.png",
         "mist": "mist.png",
@@ -60,7 +69,9 @@ def home(request):
         'temp': f"{temp}°C",
         'icon': icon_filename,
         'day': datetime.datetime.today().strftime('%A, %d %B %Y'),
-        'city': city.capitalize(),
+        'city': city_name,
+        'state': state,  # ✅ Correct state retrieval
+        'country': country,  # ✅ Added country
         'weather': weather_condition.title(),
         'humidity': f"{humidity}%",
         'wind': f"{wind} m/s",
@@ -70,4 +81,3 @@ def home(request):
     }
 
     return render(request, 'weatherapp/home.html', context)
-    
