@@ -5,7 +5,7 @@ Weather Application is a Django web application designed for to know the city's 
 ### ⚙️ Technical Stack
 
 - Framework: Django
-- Frontend: HTML, Bootstrap
+- Frontend: HTML, Javascript, Bootstrap
 - API: OpenweathermapAPI
     Link: https://openweathermap.org/current
 - Image API: Unsplash
