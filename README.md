@@ -36,7 +36,7 @@ Weather Application is a Django web application designed for to know the tempera
 
 • API
 
-# 1. Application
+# Application
 
 ![app](https://github.com/KiranKumarMalik/Weather-app-using-Django-and-OpenweatherAPI/blob/c89ba972b754cb0520191dcc24fdb3e1c4404d38/ss/app1.png)
 
