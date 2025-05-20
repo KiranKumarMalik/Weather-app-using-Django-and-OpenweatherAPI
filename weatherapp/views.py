@@ -79,5 +79,4 @@ def home(request):
         'latitude': latitude,
         'city_image': city_image,
     }
-
     return render(request, 'weatherapp/home.html', context)
